@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ChessGameProject">
+  <ClassDiagramComponents>
+    <Class name="Move" package="ChessGameEngine" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="evaluation" type="double" visibility="package"/>
+        <Field name="from" type="Square" visibility="package"/>
+        <Field name="To" type="Square" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="double" name="ev"/>
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="To"/>
+        </Constructor>
+        <Constructor visibility="package"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="AI" package="ChessGameEngine" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="evaluator" type="evaluateBoard" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="evaluateBoard" name="evaluator"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getEvaluator" returnType="evaluateBoard" visibility="public"/>
+        <Method name="setEvaluator" returnType="void" visibility="public">
+          <Argument type="evaluateBoard" name="evaluator"/>
+        </Method>
+        <Method name="getAllPieces" returnType="ArrayList" visibility="private">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Color" name="color"/>
+        </Method>
+        <Method name="getMaxMove" returnType="Move" visibility="private">
+          <Argument type="int" name="depth"/>
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Color" name="color"/>
+        </Method>
+        <Method name="getMinMove" returnType="Move" visibility="private">
+          <Argument type="int" name="depth"/>
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Color" name="turn"/>
+        </Method>
+        <Method name="minMax" returnType="Move" visibility="private">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Color" name="turn"/>
+          <Argument type="int" name="depth"/>
+        </Method>
+        <Method name="doAMove" returnType="Move" visibility="public">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Color" name="turn"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Bishop" package="ChessGameEngine" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="Color" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="move" returnType="void" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+        <Method name="CheckValidity" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+        </Method>
+        <Method name="PathBlocked" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+        <Method name="checkValidMoves" returnType="ArrayList" visibility="public">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Square" name="currentPos"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ChessGameEngine" package="ChessGameEngine" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="turn" type="Color" visibility="package" isStatic="true"/>
+        <Field name="evaluator" type="evaluateBoard" visibility="package" isStatic="true"/>
+        <Field name="ChessAI" type="AI" visibility="package" isStatic="true"/>
+        <Field name="frame" type="Frame" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="ChangeTurn" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="evaluateBoard" package="ChessGameEngine" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="Score" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setScore" returnType="void" visibility="public">
+          <Argument type="double" name="Score"/>
+        </Method>
+        <Method name="getScore" returnType="double" visibility="package"/>
+        <Method name="evaluate" returnType="double" visibility="package">
+          <Argument type="Square" name="Squares"/>
+        </Method>
+        <Method name="checkIsolation" returnType="boolean" visibility="public">
+          <Argument type="Square" name="Squares"/>
+          <Argument type="Square" name="Sqre"/>
+          <Argument type="int" name="a"/>
+          <Argument type="int" name="b"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Frame" package="ChessGameEngine" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="Board" type="Panel1" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package"/>
+      </Constructors>
+      <Methods>
+        <Method name="getBoard" returnType="Panel1" visibility="public"/>
+        <Method name="setBoard" returnType="void" visibility="public">
+          <Argument type="Panel1" name="Board"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="King" package="ChessGameEngine" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="Color" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="move" returnType="void" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+        <Method name="CheckValidity" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+        </Method>
+        <Method name="checkValidMoves" returnType="ArrayList" visibility="public">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Square" name="currentPos"/>
+        </Method>
+        <Method name="PathBlocked" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Knight" package="ChessGameEngine" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="Color" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="move" returnType="void" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+        <Method name="CheckValidity" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+        </Method>
+        <Method name="checkValidMoves" returnType="ArrayList" visibility="public">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Square" name="currentPos"/>
+        </Method>
+        <Method name="PathBlocked" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Panel1" package="ChessGameEngine" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="Squares" type="Square[][]" visibility="private"/>
+        <Field name="Action" type="SquaresAction" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package"/>
+      </Constructors>
+      <Methods>
+        <Method name="getSquares" returnType="Square[][]" visibility="public"/>
+        <Method name="setSquares" returnType="void" visibility="public">
+          <Argument type="Square[][]" name="Squares"/>
+        </Method>
+        <Method name="getAction" returnType="SquaresAction" visibility="public"/>
+        <Method name="setAction" returnType="void" visibility="public">
+          <Argument type="SquaresAction" name="Action"/>
+        </Method>
+        <Method name="clone" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Square[][]" name="cloneFrom"/>
+          <Argument type="Square[][]" name="cloneTo"/>
+        </Method>
+        <Method name="initSquares" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Square[][]" name="board"/>
+        </Method>
+        <Method name="InitSquares" returnType="void" visibility="package"/>
+        <Method name="AssignPiecesToSquares" returnType="void" visibility="package"/>
+      </Methods>
+    </Class>
+    <Class name="Pawn" package="ChessGameEngine" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="Color" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="move" returnType="void" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+        <Method name="CheckValidity" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+        </Method>
+        <Method name="CheckEat" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+        </Method>
+        <Method name="checkValidMoves" returnType="ArrayList" visibility="public">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Square" name="currentPos"/>
+        </Method>
+        <Method name="PathBlocked" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Piece" package="ChessGameEngine" visibility="public" isAbstract="true" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="ValidSqaures" type="ArrayList" visibility="private"/>
+        <Field name="color" type="Color" visibility="package"/>
+        <Field name="icon" type="ImageIcon" visibility="public"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getValidSqaures" returnType="ArrayList" visibility="public"/>
+        <Method name="setValidSqaures" returnType="void" visibility="public">
+          <Argument type="ArrayList" name="ValidSqaures"/>
+        </Method>
+        <Method name="checkValidMoves" returnType="ArrayList" visibility="public" isAbstract="true">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Square" name="currentPos"/>
+        </Method>
+        <Method name="getValidMoves" returnType="ArrayList" visibility="public">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Square" name="currentPos"/>
+        </Method>
+        <Method name="move" returnType="void" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square[][]" name="Squares"/>
+        </Method>
+        <Method name="clone" returnType="void" visibility="public">
+          <Argument type="Piece" name="a"/>
+        </Method>
+        <Method name="CheckValidity" returnType="boolean" visibility="public" isAbstract="true">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+        </Method>
+        <Method name="PathBlocked" returnType="boolean" visibility="public" isAbstract="true">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Queen" package="ChessGameEngine" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="Color" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="move" returnType="void" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+        <Method name="CheckValidity" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+        </Method>
+        <Method name="PathBlocked" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+        <Method name="checkValidMoves" returnType="ArrayList" visibility="public">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Square" name="currentPos"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Rook" package="ChessGameEngine" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="Color" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="move" returnType="void" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square" name="Squares"/>
+        </Method>
+        <Method name="CheckValidity" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+        </Method>
+        <Method name="PathBlocked" returnType="boolean" visibility="public">
+          <Argument type="Square" name="from"/>
+          <Argument type="Square" name="to"/>
+          <Argument type="Square[][]" name="Squares"/>
+        </Method>
+        <Method name="checkValidMoves" returnType="ArrayList" visibility="public">
+          <Argument type="Square[][]" name="board"/>
+          <Argument type="Square" name="currentPos"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Square" package="ChessGameEngine" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="piece" type="Piece" visibility="public"/>
+        <Field name="x" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addActionListener" returnType="void" visibility="public">
+          <Argument type="ActionListener" name="al"/>
+        </Method>
+        <Method name="clone" returnType="void" visibility="public">
+          <Argument type="Square" name="b"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SquaresAction" package="ChessGameEngine" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="start" type="Square" visibility="package"/>
+        <Field name="Squares" type="Square" visibility="package"/>
+        <Field name="evaluate" type="evaluateBoard" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Square" name="Squares"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="frame" source="ChessGameEngine.ChessGameEngine" target="ChessGameEngine.Frame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ChessGameEngine.Bishop" target="ChessGameEngine.Piece"/>
+    <UseRelation source="ChessGameEngine.Knight" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Board" source="ChessGameEngine.Frame" target="ChessGameEngine.Panel1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="evaluate" source="ChessGameEngine.SquaresAction" target="ChessGameEngine.evaluateBoard" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.Panel1" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="start" source="ChessGameEngine.SquaresAction" target="ChessGameEngine.Square" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Squares" source="ChessGameEngine.SquaresAction" target="ChessGameEngine.Square" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ChessAI" source="ChessGameEngine.ChessGameEngine" target="ChessGameEngine.AI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.evaluateBoard" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ChessGameEngine.Queen" target="ChessGameEngine.Piece"/>
+    <UseRelation source="ChessGameEngine.Piece" target="ChessGameEngine.Piece" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.Queen" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Action" source="ChessGameEngine.Panel1" target="ChessGameEngine.SquaresAction" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="piece" source="ChessGameEngine.Square" target="ChessGameEngine.Piece" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="evaluator" source="ChessGameEngine.ChessGameEngine" target="ChessGameEngine.evaluateBoard" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ChessGameEngine.Pawn" target="ChessGameEngine.Piece"/>
+    <HasRelation name="evaluator" source="ChessGameEngine.AI" target="ChessGameEngine.evaluateBoard" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ChessGameEngine.King" target="ChessGameEngine.Piece"/>
+    <UseRelation source="ChessGameEngine.AI" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.Square" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.AI" target="ChessGameEngine.evaluateBoard" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.Pawn" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.Piece" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.King" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ChessGameEngine.Knight" target="ChessGameEngine.Piece"/>
+    <IsRelation name="is" source="ChessGameEngine.Rook" target="ChessGameEngine.Piece"/>
+    <UseRelation source="ChessGameEngine.Panel1" target="ChessGameEngine.SquaresAction" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.Rook" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.Frame" target="ChessGameEngine.Panel1" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ChessGameEngine.Bishop" target="ChessGameEngine.Square" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="from" source="ChessGameEngine.Move" target="ChessGameEngine.Square" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="To" source="ChessGameEngine.Move" target="ChessGameEngine.Square" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
